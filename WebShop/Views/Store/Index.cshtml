@@ -9,9 +9,9 @@
     genres:
 </p>
 <ul>
-    @foreach(var category in Model)
+    @foreach (var category in Model)
     {
-        <li>@category.Name</li>
+        <li>@Html.ActionLink(category.Name, "Browse", new { category = category.Name })</li>
     }
 </ul>
 

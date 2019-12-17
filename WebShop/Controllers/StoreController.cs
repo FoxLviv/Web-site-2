@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web;
-using Microsoft.AspNetCore.Mvc;
+using System.Web.Mvc;
 using WebShop.Models;
 
 namespace WebShop.Controllers
@@ -28,7 +27,7 @@ namespace WebShop.Controllers
             return View(categoryModel);
         }
 
-        public IActionResult Details(int id)
+        public ActionResult Details(int id)
         {
             var item = new Item { Title = "Item" + id };
             return View(item);
