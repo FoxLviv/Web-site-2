@@ -9,27 +9,25 @@ namespace WebShop.Controllers
 {
     public class StoreController : Controller
     {
+        WebShopEntities shopDB = new WebShopEntities();
+
         public ActionResult Index()
         {
-            var category = new List<Category>
-            {
-                new Category {Name = "Electronics"},
-                new Category {Name = "Furniture"},
-                new Category {Name = "Accessories"}
-            };
-            return View(category);
+            var categories = shopDB.Categories.ToList();
+            return View(categories);
             //return "Hello from index";
         }
 
         public ActionResult Browse(string category)
         {
-            var categoryModel = new Category { Name = category };
+            var categoryModel = shopDB.Categories.Include("Items")
+                .Single(c=>c.Name==category);
             return View(categoryModel);
         }
 
         public ActionResult Details(int id)
         {
-            var item = new Item { Title = "Item" + id };
+            var item = shopDB.Items.Find(id);
             return View(item);
         }
     }
